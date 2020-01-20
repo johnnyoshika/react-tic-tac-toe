@@ -31,6 +31,8 @@ const Board = () => {
 
   const handleClick = i => {
     const clone = squares.slice();
+    if (calculateWinner(clone) || clone[i]) return;
+
     clone[i] = xIsNext ? 'X' : 'O';
     setSquares(clone);
     setXIsNext(!xIsNext);
