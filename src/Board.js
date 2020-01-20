@@ -25,8 +25,10 @@ const calculateWinner = squares => {
   return null;
 };
 
+const start = Array(9).fill(null);
+
 const Board = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(start);
   const [xIsNext, setXIsNext] = useState(true);
 
   const handleClick = i => {
@@ -36,6 +38,11 @@ const Board = () => {
     clone[i] = xIsNext ? 'X' : 'O';
     setSquares(clone);
     setXIsNext(!xIsNext);
+  };
+
+  const handleReset = () => {
+    setSquares(start);
+    setXIsNext(true);
   };
 
   const renderSquare = i => (
@@ -64,6 +71,9 @@ const Board = () => {
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
+      </div>
+      <div className="reset">
+        <button onClick={handleReset}>Reset</button>
       </div>
     </div>
   );
